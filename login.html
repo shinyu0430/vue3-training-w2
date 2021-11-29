@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    <div class="container" id="app">
+      <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="col-3 text-center">
+          <h2>請先登入</h2>
+          <input class="form-control mb-3" type="email" placeholder="Email Address" v-model="user.username"/>
+          <input class="form-control mb-3" type="password" name="" id="" placeholder="PassWord" v-model="user.password"/>
+          <button class="d-block btn btn-primary w-100" @click="login">登入</button>
+        </div>
+      </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
+    integrity='sha512-Xk3wWei2TGrsh9kDSBKUMIjw/86sLUvhtnv9f7fOuIwhhiUTKz8szkWkzHthrM5Bb3Bu9idSzkxOrkzhcneuiw=='
+    crossorigin='anonymous'></script>
+    <script type="module" src="./login.js"></script>
+  </body>
+</html>

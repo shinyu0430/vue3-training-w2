@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+    />
+    <title>Document</title>
+    <style>
+
+    .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 24px;
+        height: 24px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        border-color: #000 transparent #888 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+      </style>
+  </head>
+ 
+  <body>
+    <div class="container" id="app">
+      <div class="row" >
+        <div class="col-6">
+          <h2>產品列表</h2>
+          <table class="table" v-if='isLoaded'>
+            <caption>
+              目前有 {{products.length}} 項產品
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">產品名稱</th>
+                <th scope="col">原價</th>
+                <th scope="col">售價</th>
+                <th scope="col">是否啟用</th>
+                <th scope="col">查看細節</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in products" :key="item.id">
+                <td>{{item.title}}</td>
+                <td>{{item.origin_price}}</td>
+                <td>{{item.price}}</td>
+
+                <td><a href="#" @click.prevent="switchEnabled(item)" :class="[item.is_enabled?'text-success':'text-danger']">{{item.is_enabled?'啟用':'尚未啟用'}}</a></td>
+                <td>
+                  <button type="button" class="btn btn-primary" @click="showDetail(item)">
+                    查看細節
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="lds-dual-ring" v-else></div>
+        </div>
+        <div class="col-6">
+          <h2>單一產品細節</h2>
+          <template v-if ="temp.id">
+            <div class="card" style="width: 30rem;">
+                <img :src="temp.imageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <h3>{{temp.title}}<span class="badge bg-primary">{{temp.category}}</span></h3>
+                    <p>商品描述：{{temp.description}}</p>
+                    <p>商品內容：{{temp.content}}</p>
+                    <p>{{temp.price}} <del class="text-muted ">{{temp.origin_price}}</del> 個/元</p>
+                  </p>
+                </div>
+              </div>
+            <div class="d-flex flex-wrap" >
+                <img :src="url" alt="" class="w-50 img-fluid" v-for="url in temp.imagesUrl">
+            </div>              
+          </template>
+          
+        </div>
+      </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
+    integrity='sha512-Xk3wWei2TGrsh9kDSBKUMIjw/86sLUvhtnv9f7fOuIwhhiUTKz8szkWkzHthrM5Bb3Bu9idSzkxOrkzhcneuiw=='
+    crossorigin='anonymous'></script>
+    <script src="./product.js" type="module"></script>
+  </body>
+</html>
