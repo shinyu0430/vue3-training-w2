@@ -44,7 +44,7 @@
       <div class="row" >
         <div class="col-6">
           <h2>產品列表</h2>
-          <table class="table" v-if='isLoaded'>
+          <table v-if='isLoaded' class="table">
             <caption>
               目前有 {{products.length}} 項產品
             </caption>
@@ -62,8 +62,8 @@
                 <td>{{item.title}}</td>
                 <td>{{item.origin_price}}</td>
                 <td>{{item.price}}</td>
-
-                <td><a href="#" @click.prevent="switchEnabled(item)" :class="[item.is_enabled?'text-success':'text-danger']">{{item.is_enabled?'啟用':'尚未啟用'}}</a></td>
+                <td>
+                  <a href="#" @click.prevent="switchEnabled(item)" :class="[item.is_enabled?'text-success':'text-danger']">{{item.is_enabled?'啟用':'尚未啟用'}}</a></td>
                 <td>
                   <button type="button" class="btn btn-primary" @click="showDetail(item)">
                     查看細節
@@ -72,7 +72,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="lds-dual-ring" v-else></div>
+          <div v-else class="lds-dual-ring"></div>
         </div>
         <div class="col-6">
           <h2>單一產品細節</h2>
@@ -89,7 +89,7 @@
                 </div>
               </div>
             <div class="d-flex flex-wrap" >
-                <img :src="url" alt="" class="w-50 img-fluid" v-for="url in temp.imagesUrl">
+                <img :src="url" alt="副圖" class="w-50 img-fluid" v-for="(url,index) in temp.imagesUrl" :key="index">
             </div>              
           </template>
           

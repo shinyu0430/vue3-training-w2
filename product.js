@@ -14,12 +14,9 @@ const app ={
     methods: {
       checkAdmin() {
         axios.post(`${this.api.url}/api/user/check`)
-          .then((response) => {
-            if (response.data.success) {
+          .then(() => {
               this.getData();
-            } else {
               window.location = 'login.html';
-            }
           })
           .catch((err) => {
             alert(err.data.message)
@@ -29,15 +26,11 @@ const app ={
       getData() {
         axios.get(`${this.api.url}/api/${this.api.path}/admin/products`)
           .then((response) => {
-            if (response.data.success) {
               this.products = response.data.products;
-            }
+              this.isLoaded = true
           })
           .catch((err) => {
             alert(err.data.message);
-          })
-          .then(()=>{
-              this.isLoaded = true
           })
       },
       showDetail(item) {

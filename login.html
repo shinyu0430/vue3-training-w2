@@ -11,13 +11,12 @@
     <title>Document</title>
   </head>
   <body>
-    
     <div class="container" id="app">
       <div class="row justify-content-center align-items-center" style="height:100vh">
         <div class="col-3 text-center">
           <h2>請先登入</h2>
           <input class="form-control mb-3" type="email" placeholder="Email Address" v-model="user.username"/>
-          <input class="form-control mb-3" type="password" name="" id="" placeholder="PassWord" v-model="user.password"/>
+          <input class="form-control mb-3" type="password" placeholder="PassWord" v-model="user.password"/>
           <button class="d-block btn btn-primary w-100" @click="login">登入</button>
         </div>
       </div>
